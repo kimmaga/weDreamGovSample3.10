@@ -24,12 +24,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/egovframework/com/cmm/main.css' />">
-<link href="<c:url value="/css/egovframework/com/com.css"/>" rel="stylesheet" type="text/css">
-<title>eGovFrame 공통 컴포넌트</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="ROBOTS" content="NOINDEX,NOFOLLOW" />
+	<title>손해보험협회</title>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/lcms/common.css'/>">
+
 <script type="text/javascript" src="<c:url value='/js/egovframework/com/cmm/jquery.js'/>" ></script>
 <script type="text/javaScript" language="javascript" defer="defer">
+
 	function getCookie(cname) {
  	  var name = cname + "=";
  	  var decodedCookie = decodeURIComponent(document.cookie);
@@ -50,7 +53,7 @@
   	  n = n + '';
   	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
   	}
-  
+  	<%--
 	var objLeftTime;
 	var objClickInfo;
 	var latestTime;
@@ -111,8 +114,8 @@
 		//console.log("call showRemaining() = "+objLeftTime.innerHTML);
 	}
   
+
 	function reqTimeAjax() {
-	  	
 	  	if (stateExpiredTime==true) {
 	  		alert('<spring:message code="comCmm.top.cantIncSessionTime"/>');//시간을 연장할수 없습니다.
 	  		return;
@@ -138,7 +141,7 @@
 		    }
 		});
 		return false;
-	}
+	}--%>
 	
 	function logout() {
 		$("#sessionInfo").hide();
@@ -148,7 +151,15 @@
 	
 </script>
 </head>
-<body onload="init()">
+<body <%-- onload="init()"--%>>
+	<header id="header">
+		<h1 id="logo"><a href="#">손해보험협회 </a><span class="float_l">대출모집인 등록관리 시스템</span></h1>
+		<span class="top_info">
+			<a href="#" class="member">홍길동(보험사) 님 </a>
+			<a href="#" class="logout">로그아웃 </a>
+		</span>
+	</header>
+<%-- 
 <div id="header">
 	<div class="header_box">
 		<h1>
@@ -166,5 +177,6 @@
 	    </div>
 	</div>
 </div>
+--%>
 </body>
 </html>

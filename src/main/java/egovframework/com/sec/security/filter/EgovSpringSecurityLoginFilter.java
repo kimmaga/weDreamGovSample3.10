@@ -72,6 +72,9 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 		String loginProcessURL = config.getInitParameter("loginProcessURL");
 		loginProcessURL = loginProcessURL.replaceAll("\r", "").replaceAll("\n", "");
 
+		LOGGER.info("loginURL ====== > " 		+ loginURL);
+		LOGGER.info("loginProcessURL ====== > " + loginProcessURL);
+		
 		ApplicationContext act = WebApplicationContextUtils.getRequiredWebApplicationContext(config.getServletContext());
 		EgovLoginService loginService = (EgovLoginService) act.getBean("loginService");
 		EgovLoginConfig egovLoginConfig = (EgovLoginConfig) act.getBean("egovLoginConfig");
