@@ -92,9 +92,10 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 		//스프링 시큐리티 인증이 처리 되었는지 EgovUserDetailsHelper.getAuthenticatedUser() 메서드를 통해 확인한다.
 		//context-common.xml 빈 설정에 egovUserDetailsSecurityService를 등록 해서 사용해야 정상적으로 동작한다.
 		if (EgovUserDetailsHelper.getAuthenticatedUser() == null || requestURL.contains(loginProcessURL)) {
-
+			LOGGER.info("1");
 			if (isRemotelyAuthenticated != null && isRemotelyAuthenticated.equals("true")) {
 				try {
+					LOGGER.info("2");
 					//세션 토큰 정보를 가지고 DB로부터 사용자 정보를 가져옴
 					LoginVO loginVO = (LoginVO) session.getAttribute("loginVOForDBAuthentication");
 					loginVO = loginService.actionLoginByEsntlId(loginVO);
@@ -102,7 +103,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 					if (loginVO != null && loginVO.getId() != null && !loginVO.getId().equals("")) {
 						//세션 로그인
 						session.setAttribute("loginVO", loginVO);
-
+						LOGGER.info("3");
 						//로컬 인증결과 세션에 저장
 						session.setAttribute("isLocallyAuthenticated", "true");
 
@@ -113,6 +114,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 
 						Map<String, UsernamePasswordAuthenticationFilter> beans = act.getBeansOfType(UsernamePasswordAuthenticationFilter.class);
 						if (beans.size() > 0) {
+							LOGGER.info("4");
 							springSecurity = (UsernamePasswordAuthenticationFilter) beans.values().toArray()[0];
 							springSecurity.setUsernameParameter("egov_security_username");
 							springSecurity.setPasswordParameter("egov_security_password");
@@ -137,7 +139,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 
 			} else if (isRemotelyAuthenticated == null) {
 				if (requestURL.contains(loginProcessURL)) {
-
+					LOGGER.info("5");
 					String password = httpRequest.getParameter("password");
 					String id = httpRequest.getParameter("id");
 					
@@ -169,6 +171,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 				    //------------------------------------------------------------------
 				    if(egovLoginConfig.isLock()){
 				        try{
+				        	LOGGER.info("6");
 				             Map<?,?> mapLockUserInfo = (EgovMap)loginService.selectLoginIncorrect(loginVO);
 				             if(mapLockUserInfo != null){		
 				                //로그인인증제한 처리
@@ -201,6 +204,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 				    // 사용자 로그인 처리
 				    //------------------------------------------------------------------
 					try {
+						LOGGER.info("7");
 						//사용자 입력 id, password로 DB 인증을 실행함
 						loginVO = loginService.actionLogin(loginVO);
 						//사용자 IP 기록
@@ -234,6 +238,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 							LOGGER.debug("after security filter call....");
 
 						} else {
+							LOGGER.info("8");
 							//사용자 정보가 없는 경우 로그인 화면으로 redirect 시킴
 							httpRequest.setAttribute("loginMessage", egovMessageSource.getMessage("fail.common.login",request.getLocale()));
 							RequestDispatcher dispatcher = httpRequest.getRequestDispatcher(loginURL);
@@ -262,7 +267,7 @@ public class EgovSpringSecurityLoginFilter implements Filter {
 
 			}
 		}
-
+		LOGGER.info("9");
 		chain.doFilter(request, response);
 	}
 
@@ -275,9 +280,9 @@ class RequestWrapperForSecurity extends HttpServletRequestWrapper {
 	private String username = null;
 	private String password = null;
 
+
 	public RequestWrapperForSecurity(HttpServletRequest request, String username, String password) {
 		super(request);
-
 		this.username = username;
 		this.password = password;
 	}
