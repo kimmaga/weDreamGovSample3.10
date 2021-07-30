@@ -93,7 +93,6 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 		dispatcher.setLoadOnStartup(1);
 		
 		if("security".equals(EgovProperties.getProperty("Globals.Auth").trim())) {
-			
 			//-------------------------------------------------------------
 			// springSecurityFilterChain 설정
 			//-------------------------------------------------------------		
@@ -105,7 +104,6 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 			// HttpSessionEventPublisher 설정
 			//-------------------------------------------------------------	
 			servletContext.addListener(new org.springframework.security.web.session.HttpSessionEventPublisher());
-			
 			//-------------------------------------------------------------
 			// EgovSpringSecurityLoginFilter 설정
 			//-------------------------------------------------------------
@@ -122,28 +120,26 @@ public class EgovWebApplicationInitializer implements WebApplicationInitializer 
 			//-------------------------------------------------------------	
 			FilterRegistration.Dynamic egovSpringSecurityLogoutFilter = servletContext.addFilter("egovSpringSecurityLogoutFilter", new EgovSpringSecurityLogoutFilter());
 			egovSpringSecurityLogoutFilter.addMappingForUrlPatterns(null, false, "/uat/uia/actionLogout.do");
-		
+
 		} else if("session".equals(EgovProperties.getProperty("Globals.Auth").trim())) {
 			//-------------------------------------------------------------
 			// EgovLoginPolicyFilter 설정
 			//-------------------------------------------------------------	
 			FilterRegistration.Dynamic egovLoginPolicyFilter = servletContext.addFilter("LoginPolicyFilter", new EgovLoginPolicyFilter());
 			egovLoginPolicyFilter.addMappingForUrlPatterns(null, false, "/uat/uia/actionLogin.do");
-			
 		}
-
 		//-------------------------------------------------------------
 		// CkFilter 설정 (CKEditor 사용시 설정)
 		//-------------------------------------------------------------
-		FilterRegistration.Dynamic regCkFilter = servletContext.addFilter("CKFilter", new CkFilter());
-		regCkFilter.setInitParameter("properties", "egovframework/egovProps/ck.properties");
-		regCkFilter.addMappingForUrlPatterns(null, false, "/ckUploadImage");
+		//FilterRegistration.Dynamic regCkFilter = servletContext.addFilter("CKFilter", new CkFilter());
+		//regCkFilter.setInitParameter("properties", "egovframework/egovProps/ck.properties");
+		//regCkFilter.addMappingForUrlPatterns(null, false, "/ckUploadImage");
 		
 		//-------------------------------------------------------------
 		// HiddenHttpMethodFilter 설정 (Facebook OAuth 사용시 설정)
 		//-------------------------------------------------------------
-		FilterRegistration.Dynamic hiddenHttpMethodFilter = servletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter());
-		hiddenHttpMethodFilter.addMappingForUrlPatterns(null, false, "/*");
+		//FilterRegistration.Dynamic hiddenHttpMethodFilter = servletContext.addFilter("hiddenHttpMethodFilter", new HiddenHttpMethodFilter());
+		//hiddenHttpMethodFilter.addMappingForUrlPatterns(null, false, "/*");
 		
 		//-------------------------------------------------------------
 		// Tomcat의 경우 allowCasualMultipartParsing="true" 추가

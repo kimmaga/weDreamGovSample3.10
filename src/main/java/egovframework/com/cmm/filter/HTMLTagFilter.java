@@ -30,9 +30,7 @@ public class HTMLTagFilter implements Filter{
 	@SuppressWarnings("unused")
 	private FilterConfig config;
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-
+	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
 		chain.doFilter(new HTMLTagFilterRequestWrapper((HttpServletRequest)request), response);
 	}
 

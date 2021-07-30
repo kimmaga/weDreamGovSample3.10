@@ -38,7 +38,7 @@ public class EgovComIndexController implements ApplicationContextAware, Initiali
 	private EgovLoginService loginService;
 
 
-	
+/*	
 	
 	@RequestMapping("/index.do")
 	public String index(ModelMap model) {
@@ -116,42 +116,7 @@ public class EgovComIndexController implements ApplicationContextAware, Initiali
 		 * LOGGER.debug("EgovComIndexController index is called ");
 		 */
 
-		return "lcms/template/LcmsUnitLeft";
-	}
 
-	@RequestMapping("/EgovContent.do")
-	public String setContent(ModelMap model) throws Exception {
-
-		// 설정된 비밀번호 유효기간을 가져온다. ex) 180이면 비밀번호 변경후 만료일이 앞으로 180일
-		String propertyExpirePwdDay = EgovProperties.getProperty("Globals.ExpirePwdDay");
-		int expirePwdDay = 0;
-		try {
-			expirePwdDay = Integer.parseInt(propertyExpirePwdDay);
-		} catch (Exception e) {
-			LOGGER.debug("convert expirePwdDay Err : " + e.getMessage());
-		}
-
-		model.addAttribute("expirePwdDay", expirePwdDay);
-
-		// 비밀번호 설정일로부터 몇일이 지났는지 확인한다. ex) 3이면 비빌번호 설정후 3일 경과
-		LoginVO loginVO = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		model.addAttribute("loginVO", loginVO);
-		int passedDayChangePWD = 0;
-		if (loginVO != null) {
-			LOGGER.debug("===>>> loginVO.getId() = " + loginVO.getId());
-			LOGGER.debug("===>>> loginVO.getUniqId() = " + loginVO.getUniqId());
-			LOGGER.debug("===>>> loginVO.getUserSe() = " + loginVO.getUserSe());
-			// 비밀번호 변경후 경과한 일수
-			passedDayChangePWD = loginService.selectPassedDayChangePWD(loginVO);
-			LOGGER.debug("===>>> passedDayChangePWD = " + passedDayChangePWD);
-			model.addAttribute("passedDay", passedDayChangePWD);
-		}
-
-		// 만료일자로부터 경과한 일수 => ex)1이면 만료일에서 1일 경과
-		model.addAttribute("elapsedTimeExpiration", passedDayChangePWD - expirePwdDay);
-
-		return "egovframework/com/cmm/EgovUnitContent";
-	}
 
 	// context-security.xml 설정
 	// csrf="true"인 경우 csrf Token이 없는경우 이동하는 페이지

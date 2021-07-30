@@ -20,6 +20,7 @@
  ************************************************************************************************
 -->
 
+<!--인증된 유저의 LoginVO, 권한, 인증 여부를 확인 할 수있는 서비스 클래스-->
 <!-- 1.더미(Dummy) 인증  -->
 <beans profile="dummy"> 
 	<bean id="egovUserDetailsHelper" class="egovframework.com.cmm.util.EgovUserDetailsHelper" 

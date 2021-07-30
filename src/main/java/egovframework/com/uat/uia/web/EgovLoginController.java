@@ -90,7 +90,7 @@ public class EgovLoginController {
 	 * @return 로그인 페이지
 	 * @exception Exception
 	 */
-	@IncludedInfo(name = "로그인", listUrl = "/uat/uia/egovLoginUsr.do", order = 10, gid = 10)
+	@IncludedInfo(name = "로그인", listUrl = "/uat/uia/TTTegovLoginUsr.do", order = 10, gid = 10)
 	@RequestMapping(value = "/uat/uia/TTTegovLoginUsr.do")
 	public String loginUsrView(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
 		if (EgovComponentChecker.hasComponent("mberManageService")) {

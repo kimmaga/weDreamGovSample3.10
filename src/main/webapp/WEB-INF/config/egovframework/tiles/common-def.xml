@@ -4,13 +4,42 @@
 "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
 <tiles-definitions>
-    <definition name="base" template="/WEB-INF/jsp/lcms/template/LcmsLayout.jsp">
-	   <put-attribute name="header" value="/WEB-INF/jsp/lcms/template/LcmsUnitTop.jsp" />
-	   <put-attribute name="left" value="/WEB-INF/jsp/lcms/template/LcmsUnitLeft.jsp" />
-	   <put-attribute name="footer" value="/WEB-INF/jsp/lcms/template/LcmsUnitBottom.jsp" />
+    <definition name="tilesLayout" template="/WEB-INF/jsp/lcms/template/LcmsLayout.jsp">
+	   <put-attribute name="header"   value="/WEB-INF/jsp/lcms/template/LcmsUnitTop.jsp" />
+	   <put-attribute name="content"  value=""/>
+	   <put-attribute name="footer"   value="/WEB-INF/jsp/lcms/template/LcmsUnitBottom.jsp" />
  	</definition>
  
-	 <definition name="*/*/*.tiles" extends="base">
-	 	<put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
-	 </definition>
+     <definition name="tilesLeftLayout" template="/WEB-INF/jsp/lcms/template/LcmsLeftLayout.jsp">
+	   <put-attribute name="header"   value="/WEB-INF/jsp/lcms/template/LcmsUnitTop.jsp" />
+	   <put-attribute name="left" value="/WEB-INF/jsp/lcms/template/LcmsUnitLeft.jsp" />
+	   <put-attribute name="content"  value=""/>
+	   <put-attribute name="footer"   value="/WEB-INF/jsp/lcms/template/LcmsUnitBottom.jsp" />
+ 	</definition>
+ 	
+ 	<definition name="*.tiles" extends="tilesLayout">
+ 		<put-attribute name="content" value="/WEB-INF/jsp/{1}.jsp"/>
+ 	</definition>
+ 	
+ 	<definition name="*/*.tiles" extends="tilesLeftLayout">
+ 		<put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
+ 	</definition>
+ 	
+	<definition name="*/*/*.tiles" extends="tilesLeftLayout">
+		<put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 타일즈 미 적용 -->
+	<definition name="normalLayout" template="/WEB-INF/jsp/layout/NormalLayout.jsp">
+		<put-attribute name="NormalLayout" value="" />
+	</definition>
+	
+	<definition name="*.jsp" extends="normalForm">
+		<put-attribute name="NormalLayout" value="/WEB-INF/jsp/{1}.jsp" />
+	</definition>
+		
+	<definition name="*/*.jsp" extends="normalForm">
+		<put-attribute name="NormalLayout" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	
 </tiles-definitions>

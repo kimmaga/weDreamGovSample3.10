@@ -143,6 +143,7 @@ public class HTMLTagFilterRequestWrapper extends HttpServletRequestWrapper {
 		}
 		
 		value = strBuff.toString();
+		System.out.println("filter HTMLTagFilterRequestWrapper >>>>> ");
 		return value;
 	}
 

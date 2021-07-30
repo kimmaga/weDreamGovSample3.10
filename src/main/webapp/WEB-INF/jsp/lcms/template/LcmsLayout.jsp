@@ -25,7 +25,6 @@
 		<tiles:insertAttribute name="header"/>
 	</header>
 	<div id="main_wrap">
-		<tiles:insertAttribute name="left"/>
 		<tiles:insertAttribute name="content"/>
 	</div>
 	<footer>

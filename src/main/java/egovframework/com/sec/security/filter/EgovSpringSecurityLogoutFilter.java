@@ -42,10 +42,7 @@ public class EgovSpringSecurityLogoutFilter implements Filter{
 
 	public void destroy() {}
 
-
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
-
+	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) throws IOException, ServletException {
 		String requestURL = ((HttpServletRequest)request).getRequestURI();
 		LOGGER.debug(requestURL);
 
