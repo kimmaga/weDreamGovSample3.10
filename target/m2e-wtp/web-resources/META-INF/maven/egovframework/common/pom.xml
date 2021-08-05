@@ -90,6 +90,8 @@
             <artifactId>egovframework.rte.fdl.idgnr</artifactId>
             <version>${egovframework.rte.version}</version>
         </dependency>
+        
+
 
         <!--
         JBoss의 경우는 <body-context>부분을 empty로 수정하여 적용하시면 되며,
@@ -378,7 +380,15 @@
             <artifactId>twitter4j-core</artifactId>
             <version>4.0.7</version>
         </dependency>
-
+        
+        <!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		
         <!-- Ajax -->
         <dependency>
             <groupId>net.sourceforge.ajaxtags</groupId>

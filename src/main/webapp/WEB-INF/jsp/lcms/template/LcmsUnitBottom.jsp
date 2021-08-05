@@ -12,3 +12,11 @@
 		</div>
 
 	</footer>
+	<div id="quick-menu">
+		<ul>
+			<li><a href="#"><i class="fas fa-tasks"></i>개인 대출모집인 등록 </a></li>
+			<li><a href="#"><i class="fas fa-pencil-ruler"></i>개인 대출모집인 심사</a></li>
+			<li><a href="#"><i class="fas fa-eraser"></i>메뉴1</a></li>
+	
+		</ul>
+	</div>

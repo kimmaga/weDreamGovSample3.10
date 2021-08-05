@@ -2,6 +2,7 @@ package egovframework.lcms.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,10 +27,13 @@ public class MainController {
 		LOGGER.info("1313");
 		LOGGER.info("====================================================================================");
 		HttpClientUtil hu = new HttpClientUtil();
-		hu.getToken();
+		WeakHashMap<String,Object> pMap = new WeakHashMap<>();
+		hu.getToken(pMap);
 		
 		LOGGER.info("====================================================================================");
 		Map <String,String> testMap = new HashMap<>();
+		
+		testMap.put("key", "value");
 
 		return "LcmsUnitMain.tiles";
 		// return "index";

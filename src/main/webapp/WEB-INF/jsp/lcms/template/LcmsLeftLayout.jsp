@@ -26,11 +26,11 @@
 	</header>
 	<div id="main_wrap">
 		<tiles:insertAttribute name="left"/>
+
 		<tiles:insertAttribute name="content"/>
 	</div>
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
+	<tiles:insertAttribute name="footer"/>
 </div>
+
 </body>
 </html>

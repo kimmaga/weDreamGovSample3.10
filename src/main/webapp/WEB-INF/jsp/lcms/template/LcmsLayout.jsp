@@ -21,15 +21,11 @@
 <html lang="ko">
 <body>
 <div id="wrap">
-	<header>
-		<tiles:insertAttribute name="header"/>
-	</header>
+	<tiles:insertAttribute name="header"/>
 	<div id="main_wrap">
 		<tiles:insertAttribute name="content"/>
 	</div>
-	<footer>
-		<tiles:insertAttribute name="footer"/>
-	</footer>
+	<tiles:insertAttribute name="footer"/>
 </div>
 </body>
 </html>

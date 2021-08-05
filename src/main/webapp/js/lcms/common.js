@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 	menuEffect();
+	evaluateEffect();
 })
 
 function menuEffect() {
@@ -44,7 +45,7 @@ function menuEffect() {
 			menu.style.display = 'block'
 			menuWrap.style.width = 198 + 'px'
 			foldIconImg.src = "../img/close_icon.png"
-			contentsWrap.style.width = 'calc( 100% - 19.8rem )'
+			contentsWrap.style.width = 'calc( 100% - 198px )'
 		} else {
 			menu.style.display = 'none'
 			menuWrap.style.width = 15 + 'px'
@@ -61,25 +62,6 @@ function file_change(file, filename_id) {
 	document.getElementById(filename_id).value = file;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-	popup();
-})
-
-function popup() {
-	let layerBtn = document.querySelector('#btn');
-	layerBtn.addEventListener('click', layerFn);
-
-	closeBtn = document.querySelector('.close');
-	closeBtn.addEventListener('click', layerFn);
-
-	function layerFn() {
-		let popup = document.querySelector('.layer_popup_wrap');
-
-		let type = (popup.style.display == 'none') ? 'block' : 'none';
-		popup.style.display = type;
-
-	}
-}
 
 var tabs = document.querySelectorAll(".tabs ul li");
 var tab_wraps = document.querySelectorAll(".tab_wrap");
@@ -102,6 +84,7 @@ tabs.forEach(function (tab, tab_index) {
 });
 
 
+	
 
 /* 레이어팝업*/ 
 
@@ -118,7 +101,7 @@ function openLayer(IdName){
 	reservation.setAttribute("id", "deemed");
 	wrap.appendChild(reservation);
 }
-function openLayer(IdName){
+function openLayer(IdName){	
 	var pop = dEI(IdName);
 	pop.style.display = "block";
 
@@ -144,3 +127,42 @@ function resultShow(){
 		resultWrap[i].style.display='block'
 	}
 }
+
+/*심사페이지 레이아웃*/ 
+function evaluateEffect(){
+	var div1=document.querySelector('#div01');
+	var div2=document.querySelector('#div02');
+	var div3=document.querySelector('#div03');
+	var btnName=document.querySelectorAll('.linkcolor');
+	var btn2=document.querySelector('#btn02');
+	var btn3=document.querySelector('#btn03')
+	
+	for(i=0; i<btnName.length; i++){
+		btnName[i].addEventListener('click', show23)
+	}
+
+	btn2.addEventListener('click', show12)
+	btn3.addEventListener('click', div2Full)
+
+	function show23(){
+		div1.style.left=-9999 + 'px'
+		div2.style.left=0
+		div2.style.width=60+'%'
+		div3.style.left=60+'%'
+	}
+	function show12(){
+		div1.style.width=40+'%'
+		div1.style.left=0
+		div2.style.width=60+'%'
+		div2.style.left=40+'%'
+		div3.style.left=9999 + 'px'
+	}
+	function div2Full(){
+		div1.style.left=-9999 + 'px'
+		div2.style.width=100+'%'
+		div2.style.left=0
+		div3.style.left=9999 + 'px'
+	}
+   
+}
+

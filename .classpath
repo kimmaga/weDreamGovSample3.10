@@ -44,5 +44,6 @@
 	<classpathentry kind="lib" path="C:/Users/jaykim/.m2/repository/tiles/tiles-core-3.0.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jaykim/.m2/repository/tiles/tiles-jsp-3.0.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jaykim/.m2/repository/tiles/tiles-servlet-3.0.8.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
